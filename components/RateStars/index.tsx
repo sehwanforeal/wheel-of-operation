@@ -12,6 +12,7 @@ const RateStars = ({ onChange }: Props) => {
 export default RateStars;
 
 const StyledRate = styled(Rate)`
-  font-size: 35px;
+  font-size: 40px;
+  display: flex;
   color: black;
 `;

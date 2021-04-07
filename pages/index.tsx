@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import RateStars from "../components/RateStars";
-import Button from "../components/Button";
+import RateStars from "../components/uiParts/RateStars";
+import Button from "../components/uiParts/Button";
 
 export default function Home() {
   const onRateChange = (value: number) => console.log(value);

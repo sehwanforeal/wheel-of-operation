@@ -1,15 +1,24 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import { Button } from "antd";
 
 type Props = {
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  children?: string;
+  children: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  style?: CSSProperties;
 };
 
-export default function StyledButton({ onClick, children }: Props) {
-  return <OverridedButton onClick={onClick}>{children}</OverridedButton>;
+export default function StyledButton({ children, onClick, style }: Props) {
+  return (
+    <OverridedButton style={style} onClick={onClick}>
+      {children}
+    </OverridedButton>
+  );
 }
 
 const OverridedButton = styled(Button)`
   width: 100%;
+  border-radius: 10px;
+  height: 50px;
+  font-size: 14px;
+  font-weight: 600;
 `;

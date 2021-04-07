@@ -32,5 +32,4 @@ const Contents = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0px 40px;
-  margin-top: 30px;
 `;

@@ -1,16 +1,28 @@
 import styled from "styled-components";
-import RateStars from "../components/uiParts/RateStars";
 import Button from "../components/uiParts/Button";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  const onRateChange = (value: number) => console.log(value);
-  const onButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-    console.log(e);
+  const router = useRouter();
+
+  const startEvaluate = () => {
+    router.push("/evaluate");
+  };
+
   return (
-    <>
-      <RateStars onChange={onRateChange}></RateStars>
-      <Button onClick={onButtonClick}>버튼입니다</Button>
-      <h3>하이염</h3>
-    </>
+    <Container>
+      <h1>wheel of operation</h1>
+      <span>
+        안녕하세요 여기에 내용이 들어갈꺼에요 우리 회사의 미션과 비젼을 나는
+        정확히 이해하고 있나요?
+      </span>
+      <Button onClick={startEvaluate} style={{ marginTop: "50px" }}>
+        진단시작하기
+      </Button>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  margin-top: 20%;
+`;

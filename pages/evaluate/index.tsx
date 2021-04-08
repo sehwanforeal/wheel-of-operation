@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Button from "../../components/uiParts/Button";
 import PolarAreaChart from "../../components/charts/PolarAreaChart";
 import Rate from "../../components/uiParts/RateStars";
 

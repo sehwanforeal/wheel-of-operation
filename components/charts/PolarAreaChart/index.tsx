@@ -6,8 +6,15 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 });
 
 const mockdata = {
-  series: [10, 5, 8, 3, 7, 10, 8, 6],
+  series: [13, 6, 14, 10, 15, 12, 5, 11],
   options: {
+    xaxis: {
+      categories: ["1", "2", "3", "4", "5", "6", "7", "8"],
+      labels: {
+        show: true,
+      },
+    },
+    yaxis: { max: 15 },
     chart: {},
     labels: [
       "목표관리 및 목표공유",

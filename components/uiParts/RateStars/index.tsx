@@ -6,7 +6,11 @@ type Props = {
 };
 
 const RateStars = ({ onChange }: Props) => {
-  return <StyledRate allowHalf defaultValue={2.5} onChange={onChange} />;
+  return (
+    <>
+      <StyledRate allowHalf defaultValue={2.5} onChange={onChange} />
+    </>
+  );
 };
 
 export default RateStars;
@@ -16,5 +20,4 @@ const StyledRate = styled(Rate)`
   display: flex;
   color: black;
   justify-content: center;
-  align-items: center;
 `;

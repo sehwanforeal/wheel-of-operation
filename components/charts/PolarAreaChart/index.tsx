@@ -7,7 +7,6 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 
 const mockdata = {
   series: [10, 5, 8, 3, 7, 10, 8, 6],
-  //   series: [1, 2],
   options: {
     chart: {},
     labels: [
@@ -27,9 +26,9 @@ const mockdata = {
       opacity: 0.9,
     },
     legend: {
-      show: true,
+      show: false,
       position: "bottom",
-      //   horizontalAlign: "left",
+      horizontalAlign: "center",
       fontSize: "11px",
       itemMargin: {
         horizontal: 5,
@@ -43,11 +42,11 @@ const mockdata = {
   },
 };
 
-type Props = {};
+type Props = { style: React.CSSProperties };
 
-export default function PolarAreaChart({}: Props) {
+export default function PolarAreaChart({ style }: Props) {
   return (
-    <Container className="chart">
+    <Container style={style} className="chart">
       <ReactApexChart
         options={mockdata.options}
         height={"100%"}
@@ -59,6 +58,6 @@ export default function PolarAreaChart({}: Props) {
 }
 
 const Container = styled.div`
-  margin-top: 60px;
-  height: 300px;
+  height: 24%;
+  /* height: 100%; */
 `;

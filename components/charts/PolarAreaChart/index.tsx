@@ -57,7 +57,4 @@ export default function PolarAreaChart({ style }: Props) {
   );
 }
 
-const Container = styled.div`
-  height: 24%;
-  /* height: 100%; */
-`;
+const Container = styled.div``;

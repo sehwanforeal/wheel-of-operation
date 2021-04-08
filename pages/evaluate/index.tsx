@@ -18,13 +18,18 @@ export default function Evaluate() {
         </H3>
         <Rate />
       </Questions>
-      <PolarAreaChart style={{ marginTop: "20%" }} />
+      <PolarAreaChart style={chartStyle} />
     </Container>
   );
 }
 
 const marginTop = {
   marginTop: "4%",
+};
+
+const chartStyle = {
+  marginTop: "18%",
+  height: "24%",
 };
 
 const Container = styled.div`

@@ -8,7 +8,7 @@ type Props = {
 const RateStars = ({ onChange }: Props) => {
   return (
     <>
-      <StyledRate allowHalf defaultValue={2.5} onChange={onChange} />
+      <StyledRate defaultValue={3} onChange={onChange} />
     </>
   );
 };

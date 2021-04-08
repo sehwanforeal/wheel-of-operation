@@ -1,35 +1,48 @@
+import { useState, useCallback, useMemo } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
+import rawData from "../../common/data";
 import PolarAreaChart from "../../components/charts/PolarAreaChart";
 import Rate from "../../components/uiParts/RateStars";
 import Button from "../../components/uiParts/Button";
 
+const lastSubject = rawData.length - 1;
+
+const makeQuestionForm = (question: string, index: number) => {
+  return (
+    <div key={question + index}>
+      <H3>{question}</H3>
+      <Rate />
+    </div>
+  );
+};
+
 export default function Evaluate() {
+  const [subject, setSubject] = useState(0);
+  const router = useRouter();
+  const data = useMemo(() => rawData[subject], [subject]);
+  const isLastSubject = lastSubject === subject;
+
+  const toNextSubject = useCallback(() => {
+    setSubject((subject) => subject + 1);
+  }, [subject]);
+
   return (
     <Container>
       <Contents>
-        <H2>Q1. 목표관리 및 목표공유</H2>
-        <div>
-          <H3>우리 회사의 미션과 비젼을 나는 정확히 이해하고 있나요?</H3>
-          <Rate />
-          <H3 style={marginTop}>
-            우리 회사의 월간 정량적 목표를 나는 공유받고 있나요?
-          </H3>
-          <Rate />
-          <H3 style={marginTop}>
-            우리 팀 /회사의 목표와 나의 KPI와 일치화 되어 있나요?
-          </H3>
-          <Rate />
-        </div>
+        <H2>{data.name}</H2>
+        <div>{data.questions.map(makeQuestionForm)}</div>
         <PolarAreaChart style={chartStyle} />
       </Contents>
-      <Button style={buttonStyle}>다음으로</Button>
+      <Button
+        onClick={isLastSubject ? () => router.push("/result") : toNextSubject}
+        style={buttonStyle}
+      >
+        {isLastSubject ? "결과보기!" : "다음으로이동"}
+      </Button>
     </Container>
   );
 }
-
-const marginTop = {
-  marginTop: "4%",
-};
 
 const chartStyle = {
   marginTop: "11%",
@@ -56,11 +69,11 @@ const Contents = styled.div`
 
 const H2 = styled.h2`
   font-size: 1.7em;
-  margin: 19% 0 15% 0;
+  margin: 19% 0 11% 0;
   font-weight: 510;
 `;
 
 const H3 = styled.h3`
   font-size: 1.16em;
-  margin: 0;
+  margin: 4% 0 0 0;
 `;

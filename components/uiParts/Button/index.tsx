@@ -3,7 +3,7 @@ import { Button } from "antd";
 
 type Props = {
   children: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick: () => void;
   style?: CSSProperties;
 };
 

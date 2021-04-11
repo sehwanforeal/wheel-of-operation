@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useMemo, ReactElement } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import rawData from "../../common/data";
@@ -6,33 +6,67 @@ import PolarAreaChart from "../../components/charts/PolarAreaChart";
 import Rate from "../../components/uiParts/RateStars";
 import Button from "../../components/uiParts/Button";
 
+const sum = (arr: number[]) => arr.reduce((s, c) => s + c, 0);
+
+const copyWithNewValue = (source: number[], index: number, value: number) => {
+  const copy = [...source];
+  copy[index] = value;
+  return copy;
+};
+
 const lastSubject = rawData.length - 1;
 
-const makeQuestionForm = (question: string, index: number) => {
-  return (
-    <div key={question + index}>
-      <H3>{question}</H3>
-      <Rate />
-    </div>
-  );
-};
+const labels = rawData.map((subject) => subject.name);
 
 export default function Evaluate() {
   const [subject, setSubject] = useState(0);
+  const [thisScore, setThisScore] = useState([0, 0, 0]);
+  const [totalScore, setTotalScore] = useState(rawData.map(() => 0));
+
   const router = useRouter();
   const data = useMemo(() => rawData[subject], [subject]);
   const isLastSubject = lastSubject === subject;
 
-  const toNextSubject = useCallback(() => {
+  const toNextSubject = () => {
     setSubject((subject) => subject + 1);
-  }, [subject]);
+    setThisScore([0, 0, 0]);
+  };
+
+  const makeQuestionForm = (question: string, index: number): ReactElement => {
+    return (
+      <div key={`${question}-div-${index}`}>
+        <H3>{question}</H3>
+        <Rate rateIndex={index} onChange={onRateChange} />
+      </div>
+    );
+  };
+
+  const onRateChange = (value: number, rateIndex: number): void => {
+    const thisScoreCopy = copyWithNewValue(thisScore, rateIndex, value);
+    const totalScoreCopy = copyWithNewValue(
+      totalScore,
+      subject,
+      sum(thisScoreCopy)
+    );
+    setThisScore(thisScoreCopy);
+    setTotalScore(totalScoreCopy);
+  };
+
+  console.log(`
+  subject : ${subject}
+  thisScore : ${thisScore}
+  totalScore : ${totalScore}`);
 
   return (
     <Container>
       <Contents>
         <H2>{data.name}</H2>
         <div>{data.questions.map(makeQuestionForm)}</div>
-        <PolarAreaChart style={chartStyle} />
+        <PolarAreaChart
+          style={chartStyle}
+          series={totalScore}
+          labels={labels}
+        />
       </Contents>
       <Button
         onClick={isLastSubject ? () => router.push("/result") : toNextSubject}

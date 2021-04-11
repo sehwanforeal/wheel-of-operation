@@ -5,27 +5,26 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-const mockdata = {
-  series: [13, 6, 14, 10, 15, 12, 5, 11],
-  options: {
-    xaxis: {
-      categories: ["1", "2", "3", "4", "5", "6", "7", "8"],
-      labels: {
-        show: true,
-      },
-    },
-    yaxis: { max: 15 },
+type Props = {
+  series: number[];
+  labels: string[];
+  showLegend?: boolean;
+  style?: React.CSSProperties;
+};
+
+export default function PolarAreaChart({
+  series = [0],
+  labels = [""],
+  showLegend = false,
+  style,
+}: Props) {
+  if (!series.length) {
+    series = [0];
+  }
+  const options = {
+    yaxis: { max: 14 },
     chart: {},
-    labels: [
-      "목표관리 및 목표공유",
-      "지표 가시성",
-      "조직 유연성",
-      "고객경험 관리 디자인",
-      "이슈관리 ",
-      "커뮤니케이션 ",
-      "서비스 개선",
-      "직무 자신감",
-    ],
+    labels,
     stroke: {
       colors: ["#fff"],
     },
@@ -33,7 +32,7 @@ const mockdata = {
       opacity: 0.9,
     },
     legend: {
-      show: false,
+      show: showLegend,
       position: "bottom",
       horizontalAlign: "center",
       fontSize: "11px",
@@ -46,18 +45,14 @@ const mockdata = {
         height: 8,
       },
     },
-  },
-};
+  };
 
-type Props = { style: React.CSSProperties };
-
-export default function PolarAreaChart({ style }: Props) {
   return (
     <Container style={style} className="chart">
       <ReactApexChart
-        options={mockdata.options}
+        options={options}
         height={"100%"}
-        series={mockdata.series}
+        series={series}
         type="polarArea"
       />
     </Container>

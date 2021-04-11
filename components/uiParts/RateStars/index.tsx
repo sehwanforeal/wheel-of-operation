@@ -2,13 +2,18 @@ import styled from "styled-components";
 import { Rate } from "antd";
 
 type Props = {
-  onChange?: (value: number) => void;
+  onChange: (value: number, rateIndex: number) => void;
+  rateIndex: number;
 };
 
-const RateStars = ({ onChange }: Props) => {
+const RateStars = ({ onChange, rateIndex }: Props) => {
   return (
     <>
-      <StyledRate defaultValue={3} onChange={onChange} />
+      <StyledRate
+        allowClear={false}
+        defaultValue={0}
+        onChange={(value) => onChange(value, rateIndex)}
+      />
     </>
   );
 };

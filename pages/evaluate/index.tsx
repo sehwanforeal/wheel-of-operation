@@ -1,5 +1,6 @@
 import { useState, useMemo, ReactElement } from "react";
 import { useRouter } from "next/router";
+import { useResultContext } from "../../common/contexts/ResultContext";
 import styled from "styled-components";
 import rawData from "../../common/data";
 import PolarAreaChart from "../../components/charts/PolarAreaChart";
@@ -22,6 +23,7 @@ export default function Evaluate() {
   const [subject, setSubject] = useState(0);
   const [thisScore, setThisScore] = useState([0, 0, 0]);
   const [totalScore, setTotalScore] = useState(rawData.map(() => 0));
+  const resultContext = useResultContext();
 
   const router = useRouter();
   const data = useMemo(() => rawData[subject], [subject]);
@@ -52,6 +54,11 @@ export default function Evaluate() {
     setTotalScore(totalScoreCopy);
   };
 
+  const toResultPage = () => {
+    resultContext.setResult(totalScore);
+    router.push("/result");
+  };
+
   console.log(`
   subject : ${subject}
   thisScore : ${thisScore}
@@ -69,7 +76,7 @@ export default function Evaluate() {
         />
       </Contents>
       <Button
-        onClick={isLastSubject ? () => router.push("/result") : toNextSubject}
+        onClick={isLastSubject ? toResultPage : toNextSubject}
         style={buttonStyle}
       >
         {isLastSubject ? "결과보기!" : "다음으로이동"}

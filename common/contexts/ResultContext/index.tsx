@@ -9,7 +9,7 @@ type ResultContextValues = {
   setResult: Dispatch<SetStateAction<Result>>;
 };
 
-export const ResultContext = React.createContext<ResultContextValues>({
+const ResultContext = React.createContext<ResultContextValues>({
   isDone: false,
   result: null,
   setResult: () => undefined,

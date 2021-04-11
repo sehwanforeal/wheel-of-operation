@@ -31,5 +31,5 @@ const Contents = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 40px;
+  /* padding: 0px 40px; */
 `;

@@ -10,6 +10,7 @@ type Props = {
   labels: string[];
   showLegend?: boolean;
   style?: React.CSSProperties;
+  height?: string;
 };
 
 export default function PolarAreaChart({
@@ -17,6 +18,7 @@ export default function PolarAreaChart({
   labels = [""],
   showLegend = false,
   style,
+  height,
 }: Props) {
   if (!series.length) {
     series = [0];
@@ -35,7 +37,7 @@ export default function PolarAreaChart({
       show: showLegend,
       position: "bottom",
       horizontalAlign: "center",
-      fontSize: "11px",
+      fontSize: "12px",
       itemMargin: {
         horizontal: 5,
         vertical: 1,
@@ -51,7 +53,7 @@ export default function PolarAreaChart({
     <Container style={style} className="chart">
       <ReactApexChart
         options={options}
-        height={"100%"}
+        height={height ? height : "100%"}
         series={series}
         type="polarArea"
       />

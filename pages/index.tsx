@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <Container>
-      <H1>wheel of operation</H1>
+      <H1>Wheel of Operation</H1>
       <RadarChart labels={labels} />
       <Button onClick={startEvaluate} style={{ marginTop: "50px" }}>
         진단시작하기

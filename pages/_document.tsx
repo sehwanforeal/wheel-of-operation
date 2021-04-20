@@ -37,6 +37,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>WheelOfOperation</title>
           <style />
           <link
             rel="stylesheet"
@@ -48,6 +49,28 @@ export default class MyDocument extends Document {
             type="text/css"
           />
           <meta name="theme-color" content="#ffffff" />
+          <meta
+            name="description"
+            content="그로우엔베터(grownbetter) 오퍼레이션 자가진단 서비스"
+          />
+          <meta
+            name="keyword"
+            content="wheelofoperation, 오퍼레이션, cxm, 더자람, grownbetter, 그로우엔베터"
+          />
+          <meta name="author" content="grownbetter" />
+          <meta
+            property="og:url"
+            content="https://wheelofoperation.grownbetter.com/"
+          />
+          <meta property="og:title" content="Wheel of Operation" />
+          <meta
+            property="og:description"
+            content="오퍼레이션 자가진단 서비스"
+          />
+          <meta
+            property="og:image"
+            content="https://wheelofoperation.s3.ap-northeast-2.amazonaws.com/Group_1.png"
+          />
         </Head>
         <body>
           <Main />

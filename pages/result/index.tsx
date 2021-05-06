@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import rawData from "../../common/data";
 import { useResultContext } from "../../common/contexts/ResultContext";
+import { useRouter } from "next/router";
 import RadarChart from "../../components/charts/RadarChart";
 import Logo from "../../components/uiParts/Logo";
 
@@ -10,8 +11,11 @@ const labels = rawData.map((subject) => {
 });
 
 export default function Result() {
+  const router = useRouter();
   const { result } = useResultContext();
+
   if (!result) {
+    router.push("/");
     return "error";
   }
 

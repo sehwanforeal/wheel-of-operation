@@ -37,7 +37,6 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>WheelOfOperation</title>
           <style />
           <link
             rel="stylesheet"

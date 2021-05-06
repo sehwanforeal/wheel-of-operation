@@ -59,11 +59,6 @@ export default function Evaluate() {
     router.push("/result");
   };
 
-  console.log(`
-  subject : ${subject}
-  thisScore : ${thisScore}
-  totalScore : ${totalScore}`);
-
   return (
     <Container>
       <Contents>

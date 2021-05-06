@@ -6,7 +6,7 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 });
 
 type Props = {
-  series?: number[];
+  series?: number[] | null;
   labels?: string[];
   showLegend?: boolean;
   style?: React.CSSProperties;
@@ -17,7 +17,7 @@ export default function RadarChart({
   labels = [""],
   style,
 }: Props) {
-  if (!series.length) {
+  if (!series) {
     series = [0];
   }
   const options = {

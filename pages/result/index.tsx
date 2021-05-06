@@ -4,6 +4,7 @@ import { useResultContext } from "../../common/contexts/ResultContext";
 import { useRouter } from "next/router";
 import RadarChart from "../../components/charts/RadarChart";
 import Logo from "../../components/uiParts/Logo";
+import { useEffect } from "react";
 
 const labels = rawData.map((subject) => {
   const { name } = subject;
@@ -14,10 +15,11 @@ export default function Result() {
   const router = useRouter();
   const { result } = useResultContext();
 
-  if (!result) {
-    router.push("/");
-    return "error";
-  }
+  useEffect(() => {
+    if (!result) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <Container>

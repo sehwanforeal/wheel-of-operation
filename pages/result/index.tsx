@@ -24,7 +24,11 @@ export default function Result() {
   return (
     <Container>
       <H2>진단 결과</H2>
+      <Description>우상단 세줄을 클릭하면 다운로드 가능합니다.</Description>
       <RadarChart series={result} labels={labels} />
+      <CopyRight>
+        Copyright ©️ <A href="http://grownbetter.com/">GROW&BETTER</A>
+      </CopyRight>
       <a href="http://grownbetter.com/">
         <Logo />
       </a>
@@ -34,7 +38,13 @@ export default function Result() {
 const H2 = styled.h2`
   font-size: 1.7em;
   font-weight: 510;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
+`;
+
+const Description = styled.div`
+  margin-bottom: 5%;
+  font-size: 1em;
+  color: rgb(163, 163, 163);
 `;
 
 const Container = styled.div`
@@ -42,4 +52,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+const CopyRight = styled.span`
+  margin: 5% 0;
+  color: rgb(145, 145, 145);
+`;
+const A = styled.a`
+  color: rgb(145, 145, 145);
+  text-decoration: underline;
 `;

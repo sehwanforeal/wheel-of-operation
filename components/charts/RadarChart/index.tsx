@@ -63,8 +63,8 @@ export default function RadarChart({
     <Container style={style} className="chart">
       <ReactApexChart
         options={options}
-        height={"350"}
-        width={"350"}
+        height={"300"}
+        width={"300"}
         series={[{ name: "", data: series }]}
         type="radar"
       />
